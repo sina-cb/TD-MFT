@@ -25,6 +25,6 @@ The pymft library uses a JSON configuration to se the properties of the encoders
 There's a default configuration unser MFT/config.json which can be modified either in a text editor or directly from the MFT component in TouchDesigner.
 
 # Future Development
-    - Add support for more MFT devices
-    - Better visualization of the knbo values based on the selected bank
-    - Add easy parameter binding for the knobs
+- Add support for more MFT devices
+- Better visualization of the knbo values based on the selected bank
+- Add easy parameter binding for the knobs
