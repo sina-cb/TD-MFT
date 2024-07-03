@@ -45,8 +45,7 @@ class MFTExt:
 		# Load configuration from JSON file
 		self.mft.load_config(self.config_path)
 		self.mft.configure()
-		self.mft.start()
-
+		
 	def ReadMessages(self):
 		self.mft._read_messages()
 		return self.mft.read_active_changed()
