@@ -10,7 +10,9 @@ Help: search "Extensions" in wiki
 import time
 from TDStoreTools import StorageManager
 import TDFunctions as TDF
-from pymft import KnobSettings, MidiFighterTwister, constants
+from pymft import KnobSettings, MidiFighterTwister, constants, __version__
+
+print(f"pymft version loaded: {__version__}")
 
 class MFTExt:
 	"""
@@ -26,8 +28,8 @@ class MFTExt:
 		TDF.createProperty(self, f'HasUnprocessedData',
 								value=False,
 								dependable=True,
-								readOnly=False)		
-
+								readOnly=False)
+		
 		self.mft = None
 		self.start_mft()
 
@@ -49,6 +51,16 @@ class MFTExt:
 	def ReadMessages(self):
 		self.mft._read_messages()
 		return self.mft.read_active_changed()
+	
+	def OverrideEncoderValues(self, values_dat):
+		# Override encoder values from DAT
+		for row in values_dat.rows():
+			encoder_id_string = str(row[0].val)
+			print (encoder_id_string)
+			bank = constants.Encoders.Bank1()
+			encoder_id = getattr(bank, encoder_id_string)
+			value = float(row[1].val)
+			self.mft.set_encoder_value(encoder_id, value)
 	
 	def __delTD__(self):
 		self.mft.close()

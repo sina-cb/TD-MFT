@@ -1,1 +1,1 @@
-pymft
+pymft==0.1.7
